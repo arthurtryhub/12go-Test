@@ -10,6 +10,9 @@ const e = {
   calendar: '[data-qa="datepicker-calendar"]',
   oneWayBtn: '[data-qa="datepicker-clear-button"]',
   doneBtn: '[data-qa="datepicker-done-button"]',
+
+  leftScroll: '[data-icon="chevron-left"]',
+  rightScroll: '[data-icon="chevron-right"]',
 };
 
 var today = new Date().toISOString().slice(0, 10);
@@ -22,20 +25,7 @@ const tomorrow = t.toISOString().slice(0, 10);
 y.setDate(y.getDate() - 1);
 const yesterday = y.toISOString().slice(0, 10);
 
-var months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var wdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 class datePicker {
@@ -54,12 +44,24 @@ class datePicker {
       .should("have.class", "btn calendar-day");
   }
 
+  validateLeftScrollDisabled() {
+    cy.get('[class="btn disabled"]').find('[data-icon="chevron-left"]').should("exist");
+  }
+
+  scrollLeft() {
+    cy.get('[data-icon="chevron-left"]').click();
+  }
+
+  scrollRight() {
+    cy.get('[data-icon="chevron-right"]').click();
+  }
+
   selectFirstDate(firstDate) {
     cy.get(e.date1Input).click();
     cy.get(e.calendar).find(`[data-qa="day(${firstDate})"]`).click();
   }
 
-  selectSeconddate(secondDate) {
+  selectSecondDate(secondDate) {
     cy.get(e.date2Input).click();
     cy.get(e.calendar).find(`[data-qa="day(${secondDate})"]`).click();
   }
@@ -73,14 +75,14 @@ class datePicker {
   }
 
   validateFirstDate(weakDay, mth, day) {
-    cy.get(e.date1Input)
+    cy.get(e.pickDataStart)
       .should("contain.text", wdays[weakDay])
       .and("contain.text", months[mth])
       .and("contain.text", day);
   }
 
   validateSecondDate(weakDay, mth, day) {
-    cy.get(e.date1Input)
+    cy.get(e.pickDateRange)
       .should("contain.text", wdays[weakDay])
       .and("contain.text", months[mth])
       .and("contain.text", day);

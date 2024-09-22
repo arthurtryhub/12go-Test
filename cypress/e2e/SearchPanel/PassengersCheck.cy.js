@@ -1,7 +1,11 @@
 /// <reference types="cypress" />
 
 const LandingPage = require("../../page-objects/landingPage");
-const SearchPanel = require("../../page-objects/searchPanel");
+const PassengersPage = require("../../page-objects/passengersPage");
+
+const adult = 3;
+const children = 5;
+const Infants = 4;
 
 describe("Check Passengers form", () => {
   beforeEach("Open landing page", () => {
@@ -10,79 +14,80 @@ describe("Check Passengers form", () => {
   });
 
   it("Validate Default Passengers Form", () => {
-    SearchPanel.validatePassengerQuantity(2);
-    SearchPanel.openPassengerForm();
-    SearchPanel.validateAdultRecord(2, false, false);
-    SearchPanel.validateChildrenRecord(0, true, false);
-    SearchPanel.validateInfantsRecord(0, true, false);
-    SearchPanel.submitPassangersForm();
-    SearchPanel.validatePassengerQuantity(2);
+    PassengersPage;
+    PassengersPage.validatePassengerQuantity(2);
+    PassengersPage.openPassengerForm();
+    PassengersPage.validateAdultRecord(2, false, false);
+    PassengersPage.validateChildrenRecord(0, true, false);
+    PassengersPage.validateInfantsRecord(0, true, false);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(2);
   });
 
   it("Change Passengers quantity increase & decrease ", () => {
-    SearchPanel.openPassengerForm();
-    SearchPanel.increaseAdultNumber(3);
-    SearchPanel.increaseChildrenNumber(5);
-    SearchPanel.increaseInfantsNumber(3);
+    PassengersPage.openPassengerForm();
+    PassengersPage.increaseAdultNumber(adult);
+    PassengersPage.increaseChildrenNumber(children);
+    PassengersPage.increaseInfantsNumber(Infants);
 
-    SearchPanel.validateAdultRecord(5, false, false);
-    SearchPanel.validateChildrenRecord(5, false, false);
-    SearchPanel.validateInfantsRecord(3, false, false);
-    SearchPanel.validatePassengerQuantity(13);
-    SearchPanel.submitPassangersForm();
+    PassengersPage.validateAdultRecord(adult + 2, false, false);
+    PassengersPage.validateChildrenRecord(children, false, false);
+    PassengersPage.validateInfantsRecord(Infants, false, false);
+    PassengersPage.validatePassengerQuantity(adult + children + Infants + 2);
+    PassengersPage.submitPassangersForm();
 
-    SearchPanel.openPassengerForm();
-    SearchPanel.decreaseAdultNumber(1);
-    SearchPanel.decreaseChildrenNumber(2);
-    SearchPanel.decreaseInfantsNumber(2);
+    PassengersPage.openPassengerForm();
+    PassengersPage.decreaseAdultNumber(1);
+    PassengersPage.decreaseChildrenNumber(1);
+    PassengersPage.decreaseInfantsNumber(1);
 
-    SearchPanel.validateAdultRecord(4, false, false);
-    SearchPanel.validateChildrenRecord(3, false, false);
-    SearchPanel.validateInfantsRecord(1, false, false);
-    SearchPanel.validatePassengerQuantity(8);
-    SearchPanel.submitPassangersForm();
+    PassengersPage.validateAdultRecord(adult + 1, false, false);
+    PassengersPage.validateChildrenRecord(children - 1, false, false);
+    PassengersPage.validateInfantsRecord(Infants - 1, false, false);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(adult + children + Infants - 1);
   });
 
   it("Change Passengers quantity Min Max values ", () => {
-    SearchPanel.openPassengerForm();
-    SearchPanel.decreaseAdultNumber(1);
-    SearchPanel.validateAdultRecord(1, true, false);
-    SearchPanel.validateChildrenRecord(0, true, false);
-    SearchPanel.validateInfantsRecord(0, true, false);
-    SearchPanel.validatePassengerQuantity(1);
-    SearchPanel.submitPassangersForm();
-    SearchPanel.validatePassengerQuantity(1);
+    PassengersPage.openPassengerForm();
+    PassengersPage.decreaseAdultNumber(1);
+    PassengersPage.validateAdultRecord(1, true, false);
+    PassengersPage.validateChildrenRecord(0, true, false);
+    PassengersPage.validateInfantsRecord(0, true, false);
+    PassengersPage.validatePassengerQuantity(1);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(1);
   });
 
-  it("Check max values Adilt", () => {
-    SearchPanel.openPassengerForm();
-    SearchPanel.increaseAdultNumber(18);
-    SearchPanel.validateAdultRecord(20, false, true);
-    SearchPanel.validateChildrenRecord(0, true, true);
-    SearchPanel.validateInfantsRecord(0, true, true);
-    SearchPanel.submitPassangersForm();
-    SearchPanel.validatePassengerQuantity(20);
+  it("Check max values Adilts", () => {
+    PassengersPage.openPassengerForm();
+    PassengersPage.increaseAdultNumber(18);
+    PassengersPage.validateAdultRecord(20, false, true);
+    PassengersPage.validateChildrenRecord(0, true, true);
+    PassengersPage.validateInfantsRecord(0, true, true);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(20);
   });
 
-  it("Check max values child", () => {
-    SearchPanel.openPassengerForm();
-    SearchPanel.decreaseAdultNumber(1);
-    SearchPanel.increaseChildrenNumber(19);
-    SearchPanel.validateAdultRecord(1, true, true);
-    SearchPanel.validateChildrenRecord(19, false, true);
-    SearchPanel.validateInfantsRecord(0, true, true);
-    SearchPanel.submitPassangersForm();
-    SearchPanel.validatePassengerQuantity(20);
+  it("Check max values Childrens", () => {
+    PassengersPage.openPassengerForm();
+    PassengersPage.decreaseAdultNumber(1);
+    PassengersPage.increaseChildrenNumber(19);
+    PassengersPage.validateAdultRecord(1, true, true);
+    PassengersPage.validateChildrenRecord(19, false, true);
+    PassengersPage.validateInfantsRecord(0, true, true);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(20);
   });
 
   it("Check max values Infants", () => {
-    SearchPanel.openPassengerForm();
-    SearchPanel.decreaseAdultNumber(1);
-    SearchPanel.increaseInfantsNumber(19);
-    SearchPanel.validateAdultRecord(1, true, true);
-    SearchPanel.validateChildrenRecord(0, true, true);
-    SearchPanel.validateInfantsRecord(19, false, true);
-    SearchPanel.submitPassangersForm();
-    SearchPanel.validatePassengerQuantity(20);
+    PassengersPage.openPassengerForm();
+    PassengersPage.decreaseAdultNumber(1);
+    PassengersPage.increaseInfantsNumber(19);
+    PassengersPage.validateAdultRecord(1, true, true);
+    PassengersPage.validateChildrenRecord(0, true, true);
+    PassengersPage.validateInfantsRecord(19, false, true);
+    PassengersPage.submitPassangersForm();
+    PassengersPage.validatePassengerQuantity(20);
   });
 });

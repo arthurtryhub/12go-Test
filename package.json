@@ -4,7 +4,9 @@
   "description": "testk task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome",
+    "cy:run:ui": "cypress run --browser chrome --headed"
   },
   "author": "artur",
   "license": "ISC",
