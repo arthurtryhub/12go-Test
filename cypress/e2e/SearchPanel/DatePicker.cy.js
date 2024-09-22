@@ -16,7 +16,7 @@ describe("12go Asia, search Panhel spec", () => {
     datePicker.validateLeftScrollDisabled();
   });
 
-  it.only("Scroll left Right", () => {
+  it("Scroll left Right", () => {
     var sec = new Date();
     sec.setDate(sec.getDate() + 30);
     const first = sec.toISOString().slice(0, 10);

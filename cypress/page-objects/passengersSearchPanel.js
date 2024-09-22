@@ -3,7 +3,7 @@ const e = {
   baseModalPeople: '[data-qa="base-modal"]',
 };
 
-class passengersPage {
+class passengersSearchPanel {
   //Validate Adult record
   validateAdultRecord(number, decreaseDisabled, increaseDisabled) {
     cy.get(e.baseModalPeople)
@@ -144,4 +144,4 @@ class passengersPage {
   }
 }
 
-module.exports = new passengersPage();
+module.exports = new passengersSearchPanel();

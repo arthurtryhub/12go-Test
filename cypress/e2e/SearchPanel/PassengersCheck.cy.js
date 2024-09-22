@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 const LandingPage = require("../../page-objects/landingPage");
-const PassengersPage = require("../../page-objects/passengersPage");
+const PassengersPage = require("../../page-objects/passengersSearchPanel");
 
 const adult = 3;
 const children = 5;
@@ -10,6 +10,8 @@ const Infants = 4;
 describe("Check Passengers form", () => {
   beforeEach("Open landing page", () => {
     cy.clearAllCookies();
+    cy.clearAllSessionStorage();
+    cy.clearAllLocalStorage();
     LandingPage.open();
   });
 

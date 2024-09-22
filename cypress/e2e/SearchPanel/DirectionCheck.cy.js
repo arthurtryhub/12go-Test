@@ -14,24 +14,24 @@ describe("12go Asia, search Panhel spec", () => {
   });
 
   it("Select Directions Check swap Button", () => {
-    const from = "Bangkok";
-    const to = "Phuket";
-    SearchPanel.selectDirection(from, to);
-    SearchPanel.validateAndSwapDirections(from, to);
+    const departure = "Bangkok";
+    const destination = "Phuket";
+    SearchPanel.selectDirection(departure, destination);
+    SearchPanel.validateAndSwapDirections(departure, destination);
   });
 
   it("Check hints & search by typing", () => {
-    const from = "Bangkok";
-    const to = "Phuket";
+    const departure = "Bangkok";
+    const destination = "Phuket";
     const typeFrom = "Singapore";
     const typeTo = "Bangkok";
 
-    SearchPanel.selectDirection(from, to);
+    SearchPanel.selectDirection(departure, destination);
     SearchPanel.openDepartureRecord();
-    SearchPanel.validateHintAndTypeSearch(from, typeFrom);
+    SearchPanel.validateHintAndTypeSearch(departure, typeFrom);
     SearchPanel.validateSearchByName(typeFrom);
     SearchPanel.selectAndValidateFirstValueFromTheList(typeFrom);
-    SearchPanel.validateHintAndTypeSearch(to, typeTo);
+    SearchPanel.validateHintAndTypeSearch(destination, typeTo);
     SearchPanel.selectAndValidateFirstValueFromTheList(typeTo);
     SearchPanel.validateDirection(typeFrom, typeTo);
   });
