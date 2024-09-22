@@ -1,0 +1,14 @@
+{
+  "name": "test-task-12go",
+  "version": "1.0.0",
+  "description": "testk task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "artur",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.14.2"
+  }
+}
